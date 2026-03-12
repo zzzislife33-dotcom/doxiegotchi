@@ -1,5 +1,5 @@
 :root { 
-    --screen-tint: #9fb58d; 
+    --screen-tint: #FCE480; 
     --btn: #FCE480; 
     --bezel: #d4a373;
     --alert-red: #ff3333;
@@ -9,7 +9,7 @@
 }
 
 body { 
-    background: #e9edc9; 
+    background: #FFF8C4; 
     font-family: 'Courier New', monospace; 
     display: flex; justify-content: center; align-items: center; 
     height: 100vh; margin: 0; user-select: none;
