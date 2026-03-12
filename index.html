@@ -16,28 +16,34 @@
                 <div class="screen-glare"></div>
                 <p style="font-size:8px; margin-top:12px; animation: blink 1s infinite;">PRESS ANY BUTTON</p>
             </div>           
-            <div id="menu-overlay" class="overlay">
-                <div style="margin-bottom:8px; font-weight:bold; font-size: 12px;">MENU</div>
-                <div id="m-0" class="menu-item active-menu">EXIT</div>
-                <div id="m-1" class="menu-item">RESET</div>
-            </div>
+        <div id="menu-overlay" class="overlay">
+            <div id="menu-header">-- MENU --</div>
+            <div id="m-0" class="menu-item active-menu">EXIT</div>
+            <div id="m-1" class="menu-item">RESTART</div>
+        </div>
 
-            <div id="top-info">
+           <div id="top-info">
                 <span id="clock">--:--</span>
-                <span id="age-display">AGE: 0d</span>
+                <div id="status-group">
+                    <span id="lv-display">LV.1</span>
+                </div>
             </div>
             
             <div class="stats-hud">
-                <div>HAPPY  <span id="h-dots" class="stat-dots"></span></div>
                 <div>HUNGRY <span id="f-dots" class="stat-dots"></span></div>
+                <div>HAPPY  <span id="h-dots" class="stat-dots"></span></div>
                 <div>CLEAN  <span id="c-dots" class="stat-dots"></span></div>
             </div>
 
             <div id="sprite-window">
-                <div id="dead-overlay">🪦</div>
-                <div id="poop-emoji">💩</div> 
+                <div id="dead-overlay">
+                    <img src="assets/icon_rip.png" alt="RIP" style="width: 50px; height: auto; image-rendering: pixelated;">
+                </div>
+                <div id="poop-emoji">
+                    <img src="assets/icon_poop.png" alt="Poop" style="width: 24px; height: 24px; image-rendering: pixelated;">
+                </div>                
                 <div id="pet-container" style="left: 75px;">
-                    <span id="heart-overlay">❤️</span>
+                    <span id="heart-overlay"></span>
                     <img id="pet-image" src="assets/doxie_idle.png" alt="Doxie">
                 </div>
             </div>

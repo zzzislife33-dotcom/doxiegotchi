@@ -1,5 +1,5 @@
 :root { 
-    --screen-tint: #FCE480; 
+    --screen-tint: #ffffff; 
     --btn: #FCE480; 
     --bezel: #d4a373;
     --alert-red: #ff3333;
@@ -9,10 +9,23 @@
 }
 
 body { 
-    background: #FFF8C4; 
+    /* Replace with your actual background image file name */
+    background-image: url('assets/bg_outer_static.png'); 
+    
+    /* Responsive Settings */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     font-family: 'Courier New', monospace; 
-    display: flex; justify-content: center; align-items: center; 
-    height: 100vh; margin: 0; user-select: none;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    width: 100vw;
+    margin: 0; 
+    user-select: none;
 }
 
 #device { 
@@ -21,7 +34,6 @@ body {
     background-size: cover; 
     background-position: center;
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; 
-    border: 0px solid #906B50; 
     position: relative; 
     display: flex; flex-direction: column; 
     justify-content: center; align-items: center;
@@ -46,36 +58,93 @@ body {
     border-radius: 14px; display: flex; flex-direction: column; 
     box-sizing: border-box; color: #2b3a20; 
     position: relative; overflow: hidden;
-
-    /* --- REALISTIC DEPTH SHADOWS --- */
     box-shadow: 
-        inset 2px 2px 8px rgba(0, 0, 0, 0.3),   /* Top/Left dark shadow for depth */
-        inset -1px -1px 3px rgba(255, 255, 255, 0.2); /* Bottom/Right slight highlight */
+        inset 2px 2px 8px rgba(0, 0, 0, 0.3),  
+        inset -1px -1px 3px rgba(255, 255, 255, 0.2);
 }
 
 .screen-glare {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* A diagonal white gradient to look like a light reflection */
     background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
-    pointer-events: none; /* Make sure you can still click things under it */
+    pointer-events: none;
     z-index: 50;
 }
 
 .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 100; text-align: center; box-sizing: border-box; }
 #splash-screen { background: #2b3a20; color: var(--screen-tint); display: flex; }
-#menu-overlay { background: rgba(159, 181, 141, 0.95); z-index: 110; }
 
-.menu-item { margin: 10px 0; padding: 5px 15px; border: 2px solid #2b3a20; border-radius: 5px; width: 80px; text-align: center; font-weight: bold; font-size: 12px;}
-.menu-item.active-menu { background: #2b3a20; color: var(--screen-tint); }
+#menu-overlay { 
+    /* Semi-transparent background */
+    background: rgba(159, 181, 141, 0.8); 
+    
+    /* The Blur Effect */
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(4px); /* For Safari support */
+    
+    z-index: 110; 
+    display: none; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+
+/* Update the header style inside the menu overlay */
+#menu-header {
+    color: #2b3a20; 
+    width: 100%; 
+    padding: 4px 0; 
+    margin-bottom: 8px; 
+    font-size: 11px; /* Matches menu-item font size */
+    font-weight: bold; /* Same weight as EXIT/RESTART */
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.menu-item { 
+    margin: 8px 0; 
+    padding: 6px 12px; 
+    width: 100px;
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 11px;
+    
+    /* THE PIXEL BORDER TRICK */
+    /* This creates a 2px sharp blocky border without rounded corners */
+    box-shadow: 
+        0 -2px 0 0 #2b3a20, 
+        0 2px 0 0 #2b3a20, 
+        -2px 0 0 0 #2b3a20, 
+        2px 0 0 0 #2b3a20;
+    
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-item.active-menu { 
+    background: #2b3a20; 
+    color: #ffffff; 
+    /* High-contrast border for the selected item */
+    box-shadow: 
+        0 -2px 0 0 #000, 
+        0 2px 0 0 #000, 
+        -2px 0 0 0 #000, 
+        2px 0 0 0 #000;
+}
 
 #top-info { width: 100%; display: flex; justify-content: space-between; font-size: 9px; font-weight: bold; background: rgba(255, 255, 255, 0.8); padding: 4px 8px; box-sizing: border-box; z-index: 2; }
 .stats-hud { font-size: 8px; font-weight: bold; margin: 4px 0 0 8px; background: rgba(255, 255, 255, 0.6); padding: 3px 5px; border-radius: 3px; width: fit-content; z-index: 2; line-height: 1.2; }
 .stat-dots { letter-spacing: 0.5px; }
 
 #sprite-window { flex-grow: 1; display: flex; align-items: center; justify-content: center; position: relative; }
-#dead-overlay { position: absolute; bottom: 60px; font-size: 40px; display: none; z-index: 5; text-align: center; }
+#dead-overlay { 
+    position: absolute; 
+    bottom: 50px; /* Adjust height based on your background floor */
+    display: none; /* Controlled by JS */
+    z-index: 5; 
+    text-align: center;
+}
 #restart-container { position: absolute; bottom: 0; width: 100%; height: 45px; display: none; justify-content: center; align-items: center; background: rgba(255, 255, 255, 0.3); z-index: 6; }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -85,7 +154,18 @@ body {
 #pet-image { height: 70px; image-rendering: pixelated; z-index: 1; position: relative; animation: breathe 2s infinite ease-in-out; }
 @keyframes breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.95) translateY(1px); } }
 
-#heart-overlay { position: absolute; font-size: 20px; top: -15px; opacity: 0; pointer-events: none; z-index: 10; }
+#heart-overlay { 
+    position: absolute; 
+    top: -20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; 
+    pointer-events: none; 
+    z-index: 10; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .float-up { animation: floatHeart 1.5s ease-out forwards; }
 @keyframes floatHeart { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-30px); opacity: 0; } }
 
@@ -106,54 +186,48 @@ body {
     z-index: 2; animation: slowRedPulse 1.5s infinite; pointer-events: none;
 }
 
-/* 1. The Socket (The 'hole' the button sits in) */
 .btn-socket { 
-    width: 48px; 
-    height: 48px; 
-    background: #B95E16; /* Slightly darker than skin for depth */
+    width: 48px; height: 48px; 
+    background: #B95E16; 
     border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex; align-items: center; justify-content: center; 
     position: relative;
-    /* Inset shadow creates the 'hollow' look */
-    box-shadow: inset 2px 4px 8px #AA4900, 
-                1px 1px 0px #AA4900; 
+    box-shadow: inset 2px 4px 8px #AA4900, 1px 1px 0px #AA4900; 
 }
 
-/* 2. The Realistic Button */
 .abc-btn { 
-    width: 28px; 
-    height: 28px; 
-    /* Radial gradient makes it look spherical/domed */
+    width: 28px; height: 28px; 
     background: radial-gradient(circle at 30% 30%, #ffffff, #e3e3e3 60%, #eaeaea); 
-    border: none;
-    border-radius: 50%; 
-    cursor: pointer; 
-    /* Outer shadow for height, inner shadow for roundness */
-    box-shadow: 0 4px 0 rgb(152, 66, 0), 
-                0 5px 10px rgba(152, 66, 0,0.3),
-                inset -1px -2px 5px rgba(152, 66, 0,0.2); 
-    transition: all 0.1s ease;
-    outline: none; 
+    border: none; border-radius: 50%; cursor: pointer; 
+    box-shadow: 0 4px 0 rgb(152, 66, 0), 0 5px 10px rgba(152, 66, 0,0.3), inset -1px -2px 5px rgba(152, 66, 0,0.2); 
+    transition: all 0.1s ease; outline: none; 
 }
 
-/* 3. The Click Effect (Pressed look) */
 .abc-btn:active { 
-    transform: translateY(3px); /* Moves down into the socket */
-    box-shadow: 0 1px 0 #AA4900, 
-                0 2px 5px rgba(0,0,0,0.2),
-                inset -1px -2px 5px rgba(0,0,0,0.2); 
+    transform: translateY(3px); 
+    box-shadow: 0 1px 0 #AA4900, 0 2px 5px rgba(0,0,0,0.2), inset -1px -2px 5px rgba(0,0,0,0.2); 
 }
 
-/* 4. Keep your existing tray layout but adjust gap */
-.button-tray { 
-    display: flex; 
-    justify-content: center; 
-    gap: 16px; 
-    margin-top: 12px; 
-    z-index: 20; 
+.button-tray { display: flex; justify-content: center; gap: 16px; margin-top: 12px; z-index: 20; }
+#socket-b { transform: translateY(12px); }
+#poop-emoji { 
+    position: absolute; 
+    bottom: 20px; 
+    right: 20px; 
+    display: none; /* Controlled by JS */
+    z-index: 2; 
+    /* Removed drop-shadow to keep the pixel art clean */
+    filter: none; 
 }
 
-/* Socket B offset (lower than others) */
-#socket-b { transform: translateY(12px); }#poop-emoji { position: absolute; bottom: 25px; right: 40px; font-size: 20px; display: none; filter: drop-shadow(1px 1px 0px white); z-index: 2; }
+#status-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.1;
+}
+
+#lv-display {
+    color: #2b3a20;
+    font-weight: 1000; /* Extra bold for the level */
+}
