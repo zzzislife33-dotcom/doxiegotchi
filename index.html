@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doxie-Gotchi: Custom Skin Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="device">
+    <div id="screen-frame">
+        <div id="screen">
+            <div id="splash-screen" class="overlay">
+                <h3 style="margin:0">DOXIE-GOTCHI</h3>
+                <p style="font-size:8px; margin-top:12px; animation: blink 1s infinite;">PRESS ANY BUTTON</p>
+            </div>           
+            <div id="menu-overlay" class="overlay">
+                <div style="margin-bottom:8px; font-weight:bold; font-size: 12px;">MENU</div>
+                <div id="m-0" class="menu-item active-menu">EXIT</div>
+                <div id="m-1" class="menu-item">RESET</div>
+            </div>
+
+            <div id="top-info">
+                <span id="clock">--:--</span>
+                <span id="age-display">AGE: 0d</span>
+            </div>
+            
+            <div class="stats-hud">
+                <div>HAPPY  <span id="h-dots" class="stat-dots"></span></div>
+                <div>HUNGRY <span id="f-dots" class="stat-dots"></span></div>
+                <div>CLEAN  <span id="c-dots" class="stat-dots"></span></div>
+            </div>
+
+            <div id="sprite-window">
+                <div id="dead-overlay">🪦</div>
+                <div id="poop-emoji">💩</div> 
+                <div id="pet-container" style="left: 75px;">
+                    <span id="heart-overlay">❤️</span>
+                    <img id="pet-image" src="assets/doxie_idle.png" alt="Doxie">
+                </div>
+            </div>
+
+            <div id="action-bar" class="action-bar">
+                <div id="act-0" class="icon"><img src="assets/icon_food.png" alt="Food"><span class="icon-label">FOOD</span></div>
+                <div id="act-1" class="icon"><img src="assets/icon_play.png" alt="Play"><span class="icon-label">PLAY</span></div>
+                <div id="act-2" class="icon"><img src="assets/icon_groom.png" alt="Groom"><span class="icon-label">GROOM</span></div>
+                <div id="act-3" class="icon"><img src="assets/icon_menu.png" alt="Menu"><span class="icon-label">MENU</span></div>
+            </div>
+            <div id="restart-container"><div id="restart-msg">RESTART? (Press Any Button)</div></div>
+        </div>
+    </div>
+
+    <div class="button-tray">
+        <div class="btn-socket"><button class="abc-btn" onclick="handleBtn('A')"></button></div>
+        <div class="btn-socket" id="socket-b"><button id="btn-b" class="abc-btn" onclick="handleBtn('B')"></button></div>
+        <div class="btn-socket"><button class="abc-btn" onclick="handleBtn('C')"></button></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
